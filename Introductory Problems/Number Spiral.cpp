@@ -4,18 +4,13 @@
 using namespace std;
 
 signed main(){
+    io;
     int t, a, b;
     cin >> t;
     while (t--){
         cin >> a >> b;
-        int mn = max(a, b), mid = mn*(mn-1)+1, d = abs(a-b);
-        
-        if ((a < b && !(b % 2)) || (a > b && a % 2))
-            mid -= d;
-        
-        else if ((a < b && b % 2) || (a > b && !(a % 2)))
-            mid += d;
-
+        int mn = max(a, b), mid = mn*(mn-1)+1;
+        mid += (mn % 2)? b-a: a-b;
         cout << mid << '\n';
     }
 }
