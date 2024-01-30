@@ -18,14 +18,13 @@ int main(){
 
     for (int i = 0; i < m; i++){
         cin >> a;
-        auto it = nums.lower_bound(a);
+        auto it = nums.upper_bound(a);
 
-        if ((*it > a && it == nums.begin()) || !nums.size())
+        if (it == nums.begin() || !nums.size())
             cout << "-1";
 
         else{
-            if (*it > a || it == nums.end())
-                it = prev(it, 1);
+            it = prev(it, 1);
 
             cout << *it;
             nums.erase(it);
