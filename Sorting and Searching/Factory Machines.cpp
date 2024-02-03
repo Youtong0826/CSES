@@ -4,7 +4,7 @@
 #define pii pair<int, int>
 #define vt vector
 #define pq priority_queue
-#define int int_fast64_t
+#define int int64_t
 #define f first
 #define s second
 using namespace std;
@@ -18,24 +18,25 @@ signed main(){
     for (int i = 0; i < n; i++)
         cin >> mh[i];
 
-    int r = 0, l = 1e18, ans= INT_MAX;
-    while (r < l){
+    int l = 0, r = INT64_MAX, ans = INT64_MAX;
+    while (r - l != 1){
         int mid = (r+l)/2;
+        cout << l << ' ' << r << ' ' << mid << '\n';
 
         int cnt = 0, fl = 0;
         for (int i = 0; i < n; i++){
             cnt += mid/mh[i];
             if (cnt >= t){
-                ans = min(ans, cnt);
+                ans = min(ans, mid);
                 fl = 1;
                 break;
             }
         }
 
         if (fl)
-            l = mid;
-        else
             r = mid;
+        else
+            l = mid;
     }
        
     cout << ans;
