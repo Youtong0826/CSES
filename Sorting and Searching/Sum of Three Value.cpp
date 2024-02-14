@@ -21,12 +21,22 @@ signed main(){
         nums[i].s = i+1;
     }
 
+
+    sort(nums.begin(), nums.end());
     for (int i = 0; i < n; i++){
-        int l = 0, r = 0;
-        while (l < n && r < n){
-            
+        int t = x-nums[i].f, l = 0, r = n-1;
+        while (l != r){
+            if (l != i && r != i && nums[l].f + nums[r].f == t){
+                cout << nums[i].s << ' ' << nums[l].s << ' ' << nums[r].s << '\n';
+                return 0;
+            }
+
+            if (nums[l].f + nums[r].f < t)
+                l++;
+            else
+                r--;
         }
-        
     }
         
+    cout << "IMPOSSIBLE";
 }
