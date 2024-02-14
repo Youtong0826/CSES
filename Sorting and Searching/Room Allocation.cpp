@@ -2,69 +2,75 @@
 #define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 #define tii tuple<int, int, int>
 #define pii pair<int, int>
-#define vt vector
-#define pq priority_queue
 #define int long long
 #define f first
 #define s second
+#define geti(x, y) get<x>(y)
 using namespace std;
 
-bool cmp(tii x, tii y){
-    return get<2>(x) < get<2>(y);
-}
+// 10         1    2     3      4
+// 1 1       1 1  2 3   3  3   3 4
+// 2 3       2 3  9 10  
+// 2 3       6 7    
+// 3 3       8 8
+// 3 4       9 9
+// 6 7       10 10
+// 8 8
+// 9 9
+// 9 10
+// 10 10
 
-int n;
-vector<pii> cus;
+vector<tii> v;
 vector<int> ans;
-queue<tii> rooms; //, vt<tii>, greater<tii>
+priority_queue<pii, vector<pii>, greater<pii>> rooms;
+
+// bool cmp(pii x, pii y){
+//     if (x.f == y.f)
+//         return x.s < y.s;
+
+//     return x.f < y.f;
+// }
+
 
 signed main(){
-    fastio;
     int n;
     cin >> n;
-    cus.resize(n);
-    for (auto &x: cus)
-        cin >> x.f >> x.s;
 
-    vector<int> ord(n); 
-    iota(ord.begin(), ord.end(), 0);
-    sort(ord.begin(), ord.end(), [](int x, int y){
-        // if (cus[x].f == cus[y].f)
-        //     return cus[x].s < cus[y].s;
-
-        if (cus[x].s == cus[y].s)
-            return cus[x].f < cus[y].f;
-
-        return cus[x].s < cus[y].s;
-    });
-
-    // for (auto i: cus)
-    //     cout << i << ' ';
-    // cout << '\n';
-
-    rooms.push(make_tuple(cus[ord[0]].s, cus[ord[0]].f, 1));
-    ans.resize(n);
-    ans[ord[0]] = 1;
-    for (int i = 1; i < n; i++){
-        auto t = rooms.front();
-        cout << get<0>(t) << ' ';
-        if (cus[ord[i]].f > get<0>(t)){
-            rooms.pop();
-            rooms.push(make_tuple(cus[ord[i]].s, cus[ord[i]].f, get<2>(t)));
-            cout << get<2>(t) << ' ' << cus[ord[i]].f << ' ' << cus[ord[i]].s;
-            ans[ord[i]] = get<2>(t);
-        }
-
-        else{
-            rooms.push(make_tuple(cus[ord[i]].s, cus[ord[i]].f, rooms.size()+1));
-            cout << rooms.size() << ' ' << cus[ord[i]].f << ' ' << cus[ord[i]].s;
-            ans[ord[i]] = rooms.size();
-        }
-
-        cout << '\n';
+    v.resize(n);
+    int i = 0;
+    for (auto &[x, y, z]: v){
+        cin >> x >> y;
+        z = i++;
     }
 
+    sort(v.begin(), v.end());
+    ans.resize(n);
+
+    int lr = 0;
+    for (int i = 0; i < n; i++){
+        if (rooms.empty()){
+            lr++;
+            rooms.push({geti(1, v[i]), lr});
+            ans[geti(2, v[i])] = lr;
+        }
+        //cout << rooms.top().s << ' ' << rooms.top().f << '\n';
+        else {
+            pii top = rooms.top();
+            //cout << geti(0, v[i]) << ' ' << geti(1, v[i]) << ' ' << top.f << '\n'; 
+            if (geti(0, v[i]) > top.f){
+                rooms.pop();
+                rooms.push({geti(1, v[i]), top.s});
+                ans[geti(2, v[i])] = top.s;
+            }
+            else {
+                lr++;
+                rooms.push({geti(1, v[i]), lr});
+                ans[geti(2, v[i])] = lr;
+            }
+        }
+    }
+    
     cout << rooms.size() << '\n';
-    for (auto i: ans)
-        cout << i << ' ';
+    for (auto x: ans)
+        cout << x << ' ';
 }
