@@ -5,7 +5,7 @@
 #define all(x) x.begin(), x.end()
 #define sz(x) (int) x.size()
 #define Youtong ios::sync_with_stdio(0); cin.tie(0); cout.tie()
-using namespace std;
+using namespace std; 
 
 //dp[i][j] 考慮前 i 本書 在 j 金額內得到的最大頁數
 
