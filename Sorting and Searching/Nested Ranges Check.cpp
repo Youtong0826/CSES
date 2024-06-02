@@ -1,9 +1,11 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define pii pair<int,int>
 #define f first
 #define s second
-#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie()
-using namespace std;
+#define all(x) x.begin(), x.end()
+#define sz(x) (int) x.size()
+#define Youtong ios::sync_with_stdio(0); cin.tie(0); cout.tie()
+using namespace std; 
 
 
 // 1 6
