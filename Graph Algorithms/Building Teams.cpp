@@ -52,6 +52,7 @@ signed main(){
         for (int i = 1; i <= n; i++)
             cout << team[i] << ' ';
     }
+    
     else
         cout << "IMPOSSIBLE";
 
