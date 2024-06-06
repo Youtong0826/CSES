@@ -1,27 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> arr;
-map<int, int> ans;
+map<int, int> mp;
 
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0); cout.tie(0);
-    int n, x;
+    int n, x, a;
     cin >> n >> x;
 
-    arr.resize(n);
-    for (int i = 0; i < n; i++)
-        cin >> arr[i];
 
-    for (int i = 0; i < n; i++){
-        if (ans.count(x-arr[i])){
-            cout << ans[x-arr[i]]+1 << ' ' << i+1 << '\n';
+    for (int i = 1; i <= n; i++){
+        cin >> a;
+        if (mp.count(x-a)){
+            cout << mp[x-a] << ' ' << i << '\n';
             return 0;
         }
 
-        ans[arr[i]] = i;
+        mp[a] = i;
     }
 
     cout << "IMPOSSIBLE";
 }
+
+// #include <bits/stdc++.h>
+// #define f first 
+// #define s second
+// using namespace std;
+
+// set<pair<int, int>> st;
+
+// int main() {
+//     int n, x, a;
+//     cin >> n >> x;
+
+//     for (int i = 1; i <= n; i++) {
+//         cin >> a;
+//         auto it = st.lower_bound({x-a, -1});
+//         if (it != st.end() && it->f == x-a) {
+//             cout << it->s << ' ' << i << '\n';
+//             return 0;
+//         }
+
+//         st.insert({a, i});
+//     }
+
+//     cout << "IMPOSSIBLE";
+// }
