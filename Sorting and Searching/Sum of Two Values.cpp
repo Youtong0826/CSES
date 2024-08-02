@@ -1,25 +1,25 @@
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-map<int, int> mp;
+// map<int, int> mp;
 
-int main(){
-    int n, x, a;
-    cin >> n >> x;
+// int main(){
+//     int n, x, a;
+//     cin >> n >> x;
 
 
-    for (int i = 1; i <= n; i++){
-        cin >> a;
-        if (mp.count(x-a)){
-            cout << mp[x-a] << ' ' << i << '\n';
-            return 0;
-        }
+//     for (int i = 1; i <= n; i++){
+//         cin >> a;
+//         if (mp.count(x-a)){
+//             cout << mp[x-a] << ' ' << i << '\n';
+//             return 0;
+//         }
 
-        mp[a] = i;
-    }
+//         mp[a] = i;
+//     }
 
-    cout << "IMPOSSIBLE";
-}
+//     cout << "IMPOSSIBLE";
+// }
 
 // #include <bits/stdc++.h>
 // #define f first 
@@ -45,3 +45,10 @@ int main(){
 
 //     cout << "IMPOSSIBLE";
 // }
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    
+}
